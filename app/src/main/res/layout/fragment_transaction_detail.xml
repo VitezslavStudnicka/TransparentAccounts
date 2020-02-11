@@ -1,13 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.FragmentTransactionDetail">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+
+        <variable
+            name="transaction"
+            type="com.vs.sample.transparentaccounts.models.Transaction" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:background="@color/lightGrey"
+        android:orientation="vertical"
+        android:padding="@dimen/fragment_padding"
+        tools:context=".fragments.FragmentTransactionDetail">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/fragment_padding"
+            tools:context=".fragments.FragmentAccountDetail">
+
+            <TextView
+                android:id="@+id/tvCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{transaction.amount.currency}"
+                tools:text="CZK" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{transaction.amount.amount.toString()}"
+                tools:text="5825" />
+
+            <TextView
+                android:id="@+id/tvPrecision"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(transaction.amount.precision)}"
+                tools:text="2" />
+
+            <TextView
+                android:id="@+id/tvDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dateToText="@{transaction.dueDate}"
+                tools:text="23:00" />
+
+            <TextView
+                android:id="@+id/tvTransactionTypeType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{transaction.type}"
+                tools:text="45000" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -6,29 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 
 import com.vs.sample.transparentaccounts.R
-import com.vs.sample.transparentaccounts.viewmodels.FragmentTransactionDetailVM
+import com.vs.sample.transparentaccounts.databinding.FragmentTransactionDetailBinding
+import com.vs.sample.transparentaccounts.databinding.FragmentTransactionsBinding
 
 class FragmentTransactionDetail : Fragment() {
 
-    companion object {
-        fun newInstance() = FragmentTransactionDetail()
-    }
+    val args: FragmentTransactionDetailArgs by navArgs()
 
-    private lateinit var viewModel: FragmentTransactionDetailVM
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = FragmentTransactionDetailBinding.inflate(inflater, container, false)
+        context ?: return binding.root
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_transaction_detail, container, false)
-    }
+        binding.transaction = args.transaction
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FragmentTransactionDetailVM::class.java)
-        // TODO: Use the ViewModel
+        return binding.root
     }
 
 }
