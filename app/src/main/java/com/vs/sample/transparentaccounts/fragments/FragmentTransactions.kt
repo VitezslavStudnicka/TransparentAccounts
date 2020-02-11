@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,12 @@ class FragmentTransactions : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentTransactionsBinding.inflate(inflater, container, false)
         context ?: return binding.root
+
+        binding.account = args.account
+        binding.cvAccountInfo.setOnClickListener {
+            val action = FragmentTransactionsDirections.actionFragmentTransactionsToFragmentAccountDetail(args.account)
+            findNavController().navigate(action)
+        }
 
         val adapter = AdapterTransactions()
         binding.rvTransactions.adapter = adapter
