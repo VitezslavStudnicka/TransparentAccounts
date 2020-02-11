@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    app:startDestination="@id/fragmentAccounts">
+
+    <fragment
+        android:id="@+id/fragmentAccounts"
+        android:name="com.vs.sample.transparentaccounts.fragments.FragmentAccounts"
+        android:label="FragmentAccounts" >
+        <action
+            android:id="@+id/action_fragmentAccounts_to_fragmentTransactions"
+            app:destination="@id/fragmentTransactions" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTransactions"
+        android:name="com.vs.sample.transparentaccounts.fragments.FragmentTransactions"
+        android:label="FragmentTransactions" >
+        <action
+            android:id="@+id/action_fragmentTransactions_to_fragmentAccountDetail"
+            app:destination="@id/fragmentAccountDetail" />
+        <action
+            android:id="@+id/action_fragmentTransactions_to_fragmentTransactionDetail"
+            app:destination="@id/fragmentTransactionDetail" />
+        <argument
+            android:name="accountId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTransactionDetail"
+        android:name="com.vs.sample.transparentaccounts.fragments.FragmentTransactionDetail"
+        android:label="FragmentTransactionDetail" >
+        <argument android:name="transactionId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAccountDetail"
+        android:name="com.vs.sample.transparentaccounts.fragments.FragmentAccountDetail"
+        android:label="FragmentAccountDetail" >
+        <argument android:name="accountId"
+            app:argType="string" />
+    </fragment>
+</navigation>
