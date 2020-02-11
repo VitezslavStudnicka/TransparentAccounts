@@ -12,22 +12,31 @@ import kotlinx.coroutines.launch
 
 class FragmentAccountsVM internal constructor(private val repo: Repository): ViewModel() {
     private val _accounts = MutableLiveData<List<Account>>(ArrayList())
+    private val _refreshing = MutableLiveData<Boolean>(false)
 
     val accounts : LiveData<List<Account>>
         get() = _accounts
 
+    val refreshing : LiveData<Boolean>
+        get() = _refreshing
+
+
     fun getAccounts() {
         viewModelScope.launch {
+            _refreshing.value = true
             repo.getAccounts()?.let {
                 _accounts.value = it
             }
+            _refreshing.value = false
         }
     }
 
-    fun getMoreMockAccount() {
+    fun getMoreMockAccounts() {
         viewModelScope.launch {
+            _refreshing.value = true
             (_accounts.value as ArrayList).addAll(mockMoreRandomData())
             _accounts.notifyObserver()
+            _refreshing.value = false
         }
     }
 

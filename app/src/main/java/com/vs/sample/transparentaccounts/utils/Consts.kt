@@ -6,6 +6,7 @@ object Consts {
     const val URL_MOCK_2 = "https://private-anon-158726cba1-eahtransparentaccountsv3prod.apiary-mock.com/webapi/api/v3/transparentAccounts/"
 
     const val FORMAT_DATE_TIME_REST = "yyyy-MM-dd'T'HH:mm:ss"
+    const val FORMAT_DATE_TIME_USER = "HH:mm dd.MM.yyyy"
 
     const val ENDPOINT_ACCOUNTS = "."
 }
