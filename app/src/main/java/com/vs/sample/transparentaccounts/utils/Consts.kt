@@ -9,4 +9,6 @@ object Consts {
     const val FORMAT_DATE_TIME_USER = "HH:mm dd.MM.yyyy"
 
     const val ENDPOINT_ACCOUNTS = "."
+    const val ENDPOINT_ACCOUNT_DETAIL = "{id}"
+    const val ENDPOINT_TRANSACTIONS = "{id}/transactions/"
 }

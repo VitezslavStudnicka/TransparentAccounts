@@ -11,3 +11,9 @@ class AccountsViewModelFactory(private val repository: Repository): ViewModelPro
         return FragmentAccountsVM(repository) as T
     }
 }
+
+class TransactionsViewModelFactory(private val repository: Repository): ViewModelProvider.NewInstanceFactory() {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return FragmentTransactionsVM(repository) as T
+    }
+}

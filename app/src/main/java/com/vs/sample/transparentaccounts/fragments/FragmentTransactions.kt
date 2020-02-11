@@ -1,34 +1,53 @@
 package com.vs.sample.transparentaccounts.fragments
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import com.vs.sample.transparentaccounts.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.vs.sample.transparentaccounts.adapters.AdapterTransactions
+import com.vs.sample.transparentaccounts.databinding.FragmentTransactionsBinding
+import com.vs.sample.transparentaccounts.utils.InjectorUtils
 import com.vs.sample.transparentaccounts.viewmodels.FragmentTransactionsVM
 
 class FragmentTransactions : Fragment() {
 
-    companion object {
-        fun newInstance() = FragmentTransactions()
+    private val viewModel: FragmentTransactionsVM by viewModels {
+        InjectorUtils.provideTransactionsVMFactory()
     }
 
-    private lateinit var viewModel: FragmentTransactionsVM
+    private val args : FragmentTransactionsArgs by navArgs()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_transactions, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getTransactions(args.accountId)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FragmentTransactionsVM::class.java)
-        // TODO: Use the ViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = FragmentTransactionsBinding.inflate(inflater, container, false)
+        context ?: return binding.root
+
+        val adapter = AdapterTransactions()
+        binding.rvTransactions.adapter = adapter
+        binding.rvTransactions.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+
+        viewModel.transactions.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+            adapter.notifyDataSetChanged()
+        }
+        viewModel.refreshing.observe(viewLifecycleOwner) {
+            binding.swipeRefresh.isRefreshing = it
+        }
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.stopRefreshing()
+        }
+
+        return binding.root
     }
 
 }

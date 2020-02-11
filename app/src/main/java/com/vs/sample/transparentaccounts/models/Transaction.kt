@@ -1,6 +1,23 @@
 package com.vs.sample.transparentaccounts.models
 
-class Transaction {
+import com.google.gson.annotations.SerializedName
+import java.math.BigDecimal
+import java.util.*
+
+data class Transaction(val type: String, val amount: Amount, val dueDate: Date, val sender: Sender, val receiver: Receiver) {
+    val processingDate: Date? = null
+    val typeDescription: String? = null
+}
+
+data class Amount(@SerializedName("value") val amount: BigDecimal, val precision: Int, val currency: String)
+data class Receiver(val accountNumber: String, val bankCode: String, val iban: String)
+data class Sender(val accountNumber: String, val bankCode: String, val iban: String) {
+    val specificSymbol: String? = null
+    val specificSymbolParty: String? = null
+    val variableSymbol: String? = null
+    val constantSymbol: String? = null
+    val name: String? = null
+    val description: String? = null
 }
 
 /*{

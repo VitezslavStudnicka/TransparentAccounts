@@ -31,4 +31,7 @@ class Rest {
 
     suspend fun accounts(page : Int? = null, size : Int? = null) = service.getAccounts(page, size)
 
+    suspend fun transactionsOfAccount(id: String, page: Int? = null, size: Int? = null, order: String? = null, dateFrom: String? = null, dateTo: String? = null)
+            = service.getTransactions(id, page, size, order, dateFrom, dateTo)
+
 }
