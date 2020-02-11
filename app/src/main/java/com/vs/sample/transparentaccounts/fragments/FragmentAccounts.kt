@@ -1,33 +1,33 @@
 package com.vs.sample.transparentaccounts.fragments
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import com.vs.sample.transparentaccounts.R
+import com.vs.sample.transparentaccounts.utils.InjectorUtils
 import com.vs.sample.transparentaccounts.viewmodels.FragmentAccountsVM
 
 class FragmentAccounts : Fragment() {
 
-    companion object {
-        fun newInstance() = FragmentAccounts()
+    private val viewModel: FragmentAccountsVM by viewModels {
+        InjectorUtils.provideAccountsVMFactory()
     }
 
-    private lateinit var viewModel: FragmentAccountsVM
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getAccounts()
+    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+        viewModel.accounts.observe(viewLifecycleOwner) {
+
+        }
+
         return inflater.inflate(R.layout.fragment_accounts, container, false)
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FragmentAccountsVM::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }

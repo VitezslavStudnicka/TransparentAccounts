@@ -4,7 +4,7 @@ import com.vs.sample.transparentaccounts.models.Account
 
 class Repository(private val rest: Rest) {
 
-    suspend fun getAccounts(): List<Account>? = rest.accounts()
+    suspend fun getAccounts(): List<Account>? = rest.accounts().accounts
 
     companion object {
 
