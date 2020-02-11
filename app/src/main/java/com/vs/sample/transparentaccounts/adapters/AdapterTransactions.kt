@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vs.sample.transparentaccounts.databinding.ItemAccountBinding
 import com.vs.sample.transparentaccounts.databinding.ItemTransactionBinding
 import com.vs.sample.transparentaccounts.fragments.FragmentAccountsDirections
+import com.vs.sample.transparentaccounts.fragments.FragmentTransactionsDirections
 import com.vs.sample.transparentaccounts.models.Account
 import com.vs.sample.transparentaccounts.models.Transaction
 
@@ -28,11 +29,10 @@ class AdapterTransactions: ListAdapter<Transaction, AdapterTransactions.Transact
 
         init {
             binding.clickListener = View.OnClickListener {
-//                binding.transaction?.let {transaction ->
-//                    val directions = FragmentAccountsDirections.actionFragmentAccountsToFragmentTransactions(account.accountNumber)
-//                    it.findNavController().navigate(directions)
-//                }
-
+                binding.transaction?.let {transaction ->
+                    val directions = FragmentTransactionsDirections.actionFragmentTransactionsToFragmentTransactionDetail(transaction)
+                    it.findNavController().navigate(directions)
+                }
             }
         }
     }

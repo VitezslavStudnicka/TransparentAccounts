@@ -22,21 +22,23 @@
             android:id="@+id/action_fragmentTransactions_to_fragmentTransactionDetail"
             app:destination="@id/fragmentTransactionDetail" />
         <argument
-            android:name="accountId"
-            app:argType="string" />
+            android:name="account"
+            app:argType="com.vs.sample.transparentaccounts.models.Account" />
     </fragment>
     <fragment
         android:id="@+id/fragmentTransactionDetail"
         android:name="com.vs.sample.transparentaccounts.fragments.FragmentTransactionDetail"
         android:label="FragmentTransactionDetail" >
-        <argument android:name="transactionId"
-            app:argType="string" />
+        <argument
+            android:name="transaction"
+            app:argType="com.vs.sample.transparentaccounts.models.Transaction" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAccountDetail"
         android:name="com.vs.sample.transparentaccounts.fragments.FragmentAccountDetail"
         android:label="FragmentAccountDetail" >
-        <argument android:name="accountId"
-            app:argType="string" />
+        <argument
+            android:name="account"
+            app:argType="com.vs.sample.transparentaccounts.models.Account" />
     </fragment>
 </navigation>

@@ -1,9 +1,10 @@
 package com.vs.sample.transparentaccounts.models
 
+import java.io.Serializable
 import java.math.BigDecimal
 import java.util.*
 
-data class Account(val accountNumber: String) {
+data class Account(val accountNumber: String): Serializable {
     val bankCode: String? = null
     val transparencyFrom: Date? = null
     val transparencyTo: Date? = null

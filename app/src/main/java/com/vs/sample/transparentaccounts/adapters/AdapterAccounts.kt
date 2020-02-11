@@ -27,7 +27,7 @@ class AdapterAccounts: ListAdapter<Account, AdapterAccounts.AccountsViewHolder>(
         init {
             binding.clickListener = View.OnClickListener {
                 binding.account?.let {account ->
-                    val directions = FragmentAccountsDirections.actionFragmentAccountsToFragmentTransactions(account.accountNumber)
+                    val directions = FragmentAccountsDirections.actionFragmentAccountsToFragmentTransactions(account)
                     it.findNavController().navigate(directions)
                 }
 

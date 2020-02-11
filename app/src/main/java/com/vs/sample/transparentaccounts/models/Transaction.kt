@@ -1,10 +1,11 @@
 package com.vs.sample.transparentaccounts.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.math.BigDecimal
 import java.util.*
 
-data class Transaction(val type: String, val amount: Amount, val dueDate: Date, val sender: Sender, val receiver: Receiver) {
+data class Transaction(val type: String, val amount: Amount, val dueDate: Date, val sender: Sender, val receiver: Receiver): Serializable {
     val processingDate: Date? = null
     val typeDescription: String? = null
 }

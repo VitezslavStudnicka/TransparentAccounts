@@ -25,7 +25,7 @@ class FragmentTransactions : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getTransactions(args.accountId)
+        viewModel.getTransactions(args.account.accountNumber)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
