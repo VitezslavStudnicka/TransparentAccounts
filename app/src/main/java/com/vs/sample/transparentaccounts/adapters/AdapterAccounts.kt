@@ -1,11 +1,14 @@
 package com.vs.sample.transparentaccounts.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.vs.sample.transparentaccounts.databinding.ItemAccountBinding
+import com.vs.sample.transparentaccounts.fragments.FragmentAccountsDirections
 import com.vs.sample.transparentaccounts.models.Account
 
 class AdapterAccounts: ListAdapter<Account, AdapterAccounts.AccountsViewHolder>(AccountDiffCallback())  {
@@ -19,15 +22,17 @@ class AdapterAccounts: ListAdapter<Account, AdapterAccounts.AccountsViewHolder>(
         holder.binding.executePendingBindings()
     }
 
-
     class AccountsViewHolder(internal val binding: ItemAccountBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.setClickListener { v ->
+            binding.clickListener = View.OnClickListener {
+                binding.account?.let {account ->
+                    val directions = FragmentAccountsDirections.actionFragmentAccountsToFragmentTransactions(account.accountNumber)
+                    it.findNavController().navigate(directions)
+                }
 
             }
         }
-
     }
 }
 
