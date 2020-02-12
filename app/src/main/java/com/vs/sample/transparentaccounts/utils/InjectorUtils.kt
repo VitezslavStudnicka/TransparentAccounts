@@ -11,4 +11,6 @@ object InjectorUtils {
 
     fun provideTransactionsVMFactory() = TransactionsViewModelFactory(Repository.getInstance(Rest.getInstance()))
 
+    fun provideRepository() = Repository.getInstance(Rest.getInstance())
+
 }

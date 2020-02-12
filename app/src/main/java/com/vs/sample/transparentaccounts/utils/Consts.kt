@@ -11,4 +11,7 @@ object Consts {
     const val ENDPOINT_ACCOUNTS = "."
     const val ENDPOINT_ACCOUNT_DETAIL = "{id}"
     const val ENDPOINT_TRANSACTIONS = "{id}/transactions/"
+
+    const val DEFAULT_PAGE_SIZE = 25
+    const val DEFAULT_PREFETCHSIZE_SIZE = 10
 }

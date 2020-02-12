@@ -10,6 +10,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vs.sample.transparentaccounts.adapters.AdapterAccounts
+import com.vs.sample.transparentaccounts.adapters.AdapterAccountsPaged
 import com.vs.sample.transparentaccounts.databinding.FragmentAccountsBinding
 import com.vs.sample.transparentaccounts.utils.InjectorUtils
 import com.vs.sample.transparentaccounts.viewmodels.FragmentAccountsVM
@@ -30,13 +31,18 @@ class FragmentAccounts : Fragment() {
         context ?: return binding.root
 
         binding.viewModel = viewModel
-        val adapter = AdapterAccounts()
+//        val adapter = AdapterAccounts()
+        val adapter = AdapterAccountsPaged()
         binding.rvAccounts.adapter = adapter
         binding.rvAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.swipeRefresh.setOnRefreshListener {
 //            viewModel.getMoreMockAccounts() // Only for adding test
         }
-        viewModel.accounts.observe(viewLifecycleOwner) {
+        /*viewModel.accounts.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+            adapter.notifyDataSetChanged()
+        }*/
+        viewModel.pagedAccounts.observe(viewLifecycleOwner) {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
         }
