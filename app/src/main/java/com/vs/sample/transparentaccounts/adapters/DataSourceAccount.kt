@@ -46,19 +46,15 @@ class DataSourceAccount(private val coroutineScope: CoroutineScope): PageKeyedDa
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Account>) {
-        coroutineScope.launch {
+        /*coroutineScope.launch {
             _networkState.value = NetworkState.LOADING
             repository.getAccounts(params.key, params.requestedLoadSize)?.let {
                 it.accounts?.let {accounts ->
-                    callback.onResult(accounts, params.key-1)
+                    callback.onResult(accounts, if (params.key > 0) -1 else 0)
                 }
             }?: invalidate()
             _networkState.value = NetworkState.NOTLOADING
-        }
+        }*/
     }
 
-    override fun invalidate() {
-        super.invalidate()
-        coroutineScope.cancel()
-    }
 }
