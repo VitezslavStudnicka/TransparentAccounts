@@ -105,8 +105,10 @@
                 android:id="@+id/rvTransactions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fadeScrollbars="false"
                 android:paddingStart="@dimen/card_padding"
                 android:paddingEnd="@dimen/card_padding"
+                android:scrollbars="vertical"
                 tools:listitem="@layout/item_account" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

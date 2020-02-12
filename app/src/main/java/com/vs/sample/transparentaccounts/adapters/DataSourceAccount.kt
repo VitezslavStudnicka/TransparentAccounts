@@ -31,7 +31,7 @@ class DataSourceAccount(private val coroutineScope: CoroutineScope, private val 
                 it.accounts?.let {accounts ->
                     callback.onResult(accounts, params.key+1)
                 }
-            }?: invalidate()
+            }
             viewModel.setRefreshing(false)
         }
     }

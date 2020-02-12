@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class Rest {
 
@@ -42,7 +43,7 @@ class Rest {
 
     suspend fun accounts(page : Int? = null, size : Int? = null) = service.getAccounts(page, size)
 
-    suspend fun transactionsOfAccount(id: String, page: Int? = null, size: Int? = null, order: String? = null, dateFrom: String? = null, dateTo: String? = null)
+    suspend fun transactionsOfAccount(id: String, page: Int? = null, size: Int? = null, order: String? = null, dateFrom: Date? = null, dateTo: Date? = null)
             = service.getTransactions(id, page, size, order, dateFrom, dateTo)
 
 }

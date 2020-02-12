@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vs.sample.transparentaccounts.adapters.AdapterTransactions
+import com.vs.sample.transparentaccounts.adapters.AdapterTransactionsPaged
 import com.vs.sample.transparentaccounts.databinding.FragmentTransactionsBinding
 import com.vs.sample.transparentaccounts.utils.InjectorUtils
 import com.vs.sample.transparentaccounts.viewmodels.FragmentTransactionsVM
@@ -24,26 +25,22 @@ class FragmentTransactions : Fragment() {
 
     private val args : FragmentTransactionsArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.getTransactions(args.account.accountNumber)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentTransactionsBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
+        viewModel.accountId = args.account.accountNumber
         binding.account = args.account
         binding.cvAccountInfo.setOnClickListener {
             val action = FragmentTransactionsDirections.actionFragmentTransactionsToFragmentAccountDetail(args.account)
             findNavController().navigate(action)
         }
 
-        val adapter = AdapterTransactions()
+        val adapter = AdapterTransactionsPaged()
         binding.rvTransactions.adapter = adapter
         binding.rvTransactions.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
-        viewModel.transactions.observe(viewLifecycleOwner) {
+        viewModel.pagedTransactions.observe(viewLifecycleOwner) {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
         }
