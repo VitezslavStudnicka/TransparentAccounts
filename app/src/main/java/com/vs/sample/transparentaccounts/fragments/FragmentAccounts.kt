@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vs.sample.transparentaccounts.adapters.AdapterAccounts
 import com.vs.sample.transparentaccounts.adapters.AdapterAccountsPaged
 import com.vs.sample.transparentaccounts.databinding.FragmentAccountsBinding
 import com.vs.sample.transparentaccounts.utils.InjectorUtils
@@ -21,10 +20,6 @@ class FragmentAccounts : Fragment() {
         InjectorUtils.provideAccountsVMFactory()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.getAccounts()
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentAccountsBinding.inflate(inflater, container, false)
@@ -36,7 +31,8 @@ class FragmentAccounts : Fragment() {
         binding.rvAccounts.adapter = adapter
         binding.rvAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.swipeRefresh.setOnRefreshListener {
-//            viewModel.getMoreMockAccounts() // Only for adding test
+            viewModel.stopRefreshing()
+
         }
         /*viewModel.accounts.observe(viewLifecycleOwner) {
             adapter.submitList(it)

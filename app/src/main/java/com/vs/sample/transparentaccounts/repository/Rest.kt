@@ -23,7 +23,7 @@ class Rest {
     }
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(Consts.URL_MOCK_2)
+        .baseUrl(Consts.URL_BASE)
         .client(OkHttpClient.Builder().addInterceptor(apiKeyInterceptor).addInterceptor(interceptor).build())
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setDateFormat(Consts.FORMAT_DATE_TIME_REST).create()))
         .build()

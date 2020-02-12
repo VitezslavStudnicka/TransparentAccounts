@@ -17,8 +17,7 @@ open class SafeRepository {
             is Output.NetworkError -> Log.e(tag, "${result.exception}")
             is Output.ServerError -> {
                 try {
-                    val errorResponse =
-                        Gson().fromJson(result.errorString, ErrorResponse::class.java)
+                    val errorResponse = Gson().fromJson(result.errorString, ErrorResponse::class.java)
                     errorResponse?.let {
                         Log.e(tag, it.toString())
                     }
@@ -36,11 +35,9 @@ open class SafeRepository {
             return if (response.isSuccessful)
                 Output.Success(response.body()!!)
             else
-                if (response.errorBody() != null) {
-                    Output.ServerError(response.errorBody().toString())
-                } else {
-                    Output.NetworkError(IOException("Unknown exception"))
-                }
+                response.errorBody()?.let {
+                    Output.ServerError(it.string())
+                } ?: Output.NetworkError(IOException("Unknown exception"))
         } catch (e: Exception) {
             return Output.NetworkError(e)
         }
