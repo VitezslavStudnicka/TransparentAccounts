@@ -26,7 +26,9 @@ class FragmentTransactionsVM internal constructor(private val repo: Repository):
         viewModelScope.launch {
             _refreshing.value = true
             repo.getTransactions(accountId)?.let {
-                _transactions.value = it
+                it.transactions?.let {transactions ->
+                    _transactions.value = transactions
+                }
             }
             _refreshing.value = false
         }

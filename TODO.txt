@@ -1,0 +1,7 @@
+***Pagination
+***Production Api connection and test
+*toolbar title and back navigation
+*fragment transition animations
+*coordinator layout with account info and transaction list
+*recyclerview loading placeholder item
+*show snackbar on connection error

@@ -25,7 +25,9 @@ class FragmentAccountsVM internal constructor(private val repo: Repository): Vie
         viewModelScope.launch {
             _refreshing.value = true
             repo.getAccounts()?.let {
-                _accounts.value = it
+                it.accounts?.let {accounts ->
+                    _accounts.value = accounts
+                }
             }
             _refreshing.value = false
         }

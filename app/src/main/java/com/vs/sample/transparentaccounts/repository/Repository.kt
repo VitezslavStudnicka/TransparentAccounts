@@ -1,13 +1,10 @@
 package com.vs.sample.transparentaccounts.repository
 
-import com.vs.sample.transparentaccounts.models.Account
-import com.vs.sample.transparentaccounts.models.Transaction
+class Repository private constructor(private val rest: Rest): SafeRepository() {
 
-class Repository(private val rest: Rest) {
+    suspend fun getAccounts(page: Int? = null, size: Int? = null, order: String? = null) = safeApiCall {rest.accounts(page, size)}
 
-    suspend fun getAccounts(): List<Account>? = rest.accounts().accounts
-
-    suspend fun getTransactions(id: String): List<Transaction>? = rest.transactionsOfAccount(id).transactions
+    suspend fun getTransactions(id: String, page: Int? = null, size: Int? = null) = safeApiCall {rest.transactionsOfAccount(id, page, size)}
 
     companion object {
 
