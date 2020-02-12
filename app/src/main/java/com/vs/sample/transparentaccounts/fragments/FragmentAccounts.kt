@@ -26,18 +26,12 @@ class FragmentAccounts : Fragment() {
         context ?: return binding.root
 
         binding.viewModel = viewModel
-//        val adapter = AdapterAccounts()
         val adapter = AdapterAccountsPaged()
         binding.rvAccounts.adapter = adapter
         binding.rvAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.stopRefreshing()
-
         }
-        /*viewModel.accounts.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-            adapter.notifyDataSetChanged()
-        }*/
         viewModel.pagedAccounts.observe(viewLifecycleOwner) {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()

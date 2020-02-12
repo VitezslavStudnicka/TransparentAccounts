@@ -37,6 +37,10 @@ class FragmentAccountsVM internal constructor(private val repo: Repository): Vie
         _refreshing.value = false
     }
 
+    fun setRefreshing(value: Boolean) {
+        _refreshing.value = value
+    }
+
     fun refresh() {
         
     }
@@ -63,7 +67,7 @@ class FragmentAccountsVM internal constructor(private val repo: Repository): Vie
 
         val dataSourceFactory = object : DataSource.Factory<Int, Account>() {
             override fun create(): DataSource<Int, Account> {
-                return DataSourceAccount(viewModelScope)
+                return DataSourceAccount(viewModelScope,this@FragmentAccountsVM )
             }
         }
 
