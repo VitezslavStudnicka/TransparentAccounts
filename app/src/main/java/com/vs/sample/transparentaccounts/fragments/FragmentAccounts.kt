@@ -34,7 +34,7 @@ class FragmentAccounts : Fragment() {
         binding.rvAccounts.adapter = adapter
         binding.rvAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getMoreMockAccounts() // Only for adding test
+//            viewModel.getMoreMockAccounts() // Only for adding test
         }
         viewModel.accounts.observe(viewLifecycleOwner) {
             adapter.submitList(it)

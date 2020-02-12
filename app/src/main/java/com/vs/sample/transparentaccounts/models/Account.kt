@@ -4,20 +4,20 @@ import java.io.Serializable
 import java.math.BigDecimal
 import java.util.*
 
-data class Account(val accountNumber: String): Serializable {
-    val bankCode: String? = null
-    val transparencyFrom: Date? = null
-    val transparencyTo: Date? = null
-    val publicationTo: Date? = null
-    val actualizationDate: Date? = null
-    val balance: BigDecimal? = null
-    val currency: String? = null
-    val name: String? = null
-    val note: String? = null
-    val description: String? = null
-    val iban: String? = null
-    val statements: List<String>? = null
-}
+data class Account(val accountNumber: String,
+                   val bankCode: String?,
+                   val transparencyFrom: Date?,
+                   val transparencyTo: Date?,
+                   val publicationTo: Date?,
+                   val actualizationDate: Date?,
+                   val balance: BigDecimal?,
+                   val currency: String?,
+                   val name: String?,
+                   val note: String?,
+                   val description: String?,
+                   val iban: String?,
+                   val statements: List<String>?
+                   ): Serializable
 
 /*
 {

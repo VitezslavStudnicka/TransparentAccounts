@@ -5,21 +5,34 @@ import java.io.Serializable
 import java.math.BigDecimal
 import java.util.*
 
-data class Transaction(val type: String, val amount: Amount, val dueDate: Date, val sender: Sender, val receiver: Receiver): Serializable {
-    val processingDate: Date? = null
-    val typeDescription: String? = null
-}
+data class Transaction(val type: String?,
+                       val amount: Amount?,
+                       val dueDate: Date?,
+                       val sender: Sender?,
+                       val receiver: Receiver?,
+                       val processingDate: Date?,
+                       val typeDescription: String?
+                       ): Serializable
 
-data class Amount(@SerializedName("value") val amount: BigDecimal, val precision: Int, val currency: String)
-data class Receiver(val accountNumber: String, val bankCode: String, val iban: String)
-data class Sender(val accountNumber: String, val bankCode: String, val iban: String) {
-    val specificSymbol: String? = null
-    val specificSymbolParty: String? = null
-    val variableSymbol: String? = null
-    val constantSymbol: String? = null
-    val name: String? = null
-    val description: String? = null
-}
+data class Amount(@SerializedName("value") val amount: BigDecimal?,
+                  val precision: Int?,
+                  val currency: String?)
+
+data class Receiver(val accountNumber: String?,
+                    val bankCode: String?,
+                    val iban: String?)
+
+data class Sender(val accountNumber: String?,
+                  val bankCode: String?,
+                  val iban: String?,
+                  val specificSymbol: String?,
+                  val specificSymbolParty: String?,
+                  val variableSymbol: String?,
+                  val constantSymbol: String?,
+                  val name: String?,
+                  val description: String?
+                    )
+
 
 /*{
     "amount": {

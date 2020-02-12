@@ -33,16 +33,16 @@ class FragmentAccountsVM internal constructor(private val repo: Repository): Vie
         }
     }
 
-    fun getMoreMockAccounts() {
-        viewModelScope.launch {
-            _refreshing.value = true
-            (_accounts.value as ArrayList).addAll(mockMoreRandomData())
-            _accounts.notifyObserver()
-            _refreshing.value = false
-        }
-    }
+//    fun getMoreMockAccounts() {
+//        viewModelScope.launch {
+//            _refreshing.value = true
+//            (_accounts.value as ArrayList).addAll(mockMoreRandomData())
+//            _accounts.notifyObserver()
+//            _refreshing.value = false
+//        }
+//    }
 
-    private fun mockMoreRandomData(): ArrayList<Account> {
-        return arrayListOf(Account(randomString()), Account(randomString()), Account(randomString()), Account(randomString()))
-    }
+//    private fun mockMoreRandomData(): ArrayList<Account> {
+//        return arrayListOf(Account(randomString()), Account(randomString()), Account(randomString()), Account(randomString()))
+//    }
 }
