@@ -20,7 +20,7 @@ class DataSourceTransaction(private val coroutineScope: CoroutineScope, private 
                 it.transactions?.let { transactions ->
                     callback.onResult(transactions, 0, 1)
                 }
-            }?: invalidate()
+            }
             viewModel.setRefreshing(false)
         }
     }
