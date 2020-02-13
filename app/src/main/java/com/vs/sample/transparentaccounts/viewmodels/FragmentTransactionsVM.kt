@@ -15,6 +15,7 @@ import com.vs.sample.transparentaccounts.utils.Consts
 class FragmentTransactionsVM internal constructor(private val repo: Repository): ViewModel() {
     private val _refreshing = MutableLiveData<Boolean>(false)
     private val _pagedTransactions = initializedPagedListBuilder(getConfig()).build()
+    private var _dataSource: DataSourceTransaction? = null
 
     var accountId: String? = null
 
@@ -23,6 +24,10 @@ class FragmentTransactionsVM internal constructor(private val repo: Repository):
 
     val pagedTransactions: LiveData<PagedList<Transaction>>
         get() = _pagedTransactions
+
+    fun reloadData() {
+        _dataSource?.let { it.invalidate() }
+    }
 
     fun setRefreshing(value: Boolean) {
         _refreshing.value = value
@@ -38,7 +43,7 @@ class FragmentTransactionsVM internal constructor(private val repo: Repository):
 
         val dataSourceFactory = object : DataSource.Factory<Int, Transaction>() {
             override fun create(): DataSource<Int, Transaction> {
-                return DataSourceTransaction(viewModelScope,this@FragmentTransactionsVM )
+                return DataSourceTransaction(viewModelScope,this@FragmentTransactionsVM ).also { _dataSource = it }
             }
         }
 

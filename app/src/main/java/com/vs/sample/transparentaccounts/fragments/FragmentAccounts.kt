@@ -30,7 +30,8 @@ class FragmentAccounts : Fragment() {
         binding.rvAccounts.adapter = adapter
         binding.rvAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.stopRefreshing()
+            viewModel.setRefreshing(false)
+            viewModel.reloadData()
         }
         viewModel.pagedAccounts.observe(viewLifecycleOwner) {
             adapter.submitList(it)
