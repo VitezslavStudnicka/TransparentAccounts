@@ -47,7 +47,7 @@ class FragmentTransactions : Fragment() {
             binding.swipeRefresh.isRefreshing = it
         }
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.stopRefreshing()
+            viewModel.setRefreshing(false)
         }
 
         return binding.root

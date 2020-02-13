@@ -43,7 +43,7 @@ class DataSourceTransaction(private val coroutineScope: CoroutineScope, private 
 
 }
 
-// TODO Convert and fix query by Date
+// TODO Convert and fix query by Date (investigate: endpoint seems to ignore date)
 /*class DataSourceTransaction(private val coroutineScope: CoroutineScope, private val viewModel: FragmentTransactionsVM): ItemKeyedDataSource<Date, Transaction>() {
 
     private val repository = InjectorUtils.provideRepository()

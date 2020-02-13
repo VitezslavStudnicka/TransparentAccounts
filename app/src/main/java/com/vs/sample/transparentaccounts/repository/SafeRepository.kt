@@ -6,6 +6,8 @@ import com.vs.sample.transparentaccounts.repository.responses.ErrorResponse
 import retrofit2.Response
 import java.io.IOException
 
+
+// TODO Proper error handling
 open class SafeRepository {
     private val tag = SafeRepository::class.simpleName
 

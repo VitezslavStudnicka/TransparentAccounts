@@ -11,21 +11,11 @@ import com.vs.sample.transparentaccounts.adapters.DataSourceAccount
 import com.vs.sample.transparentaccounts.models.Account
 import com.vs.sample.transparentaccounts.repository.Repository
 import com.vs.sample.transparentaccounts.utils.Consts
-import com.vs.sample.transparentaccounts.utils.notifyObserver
-import com.vs.sample.transparentaccounts.utils.randomString
-import kotlinx.coroutines.launch
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
 
 
 class FragmentAccountsVM internal constructor(private val repo: Repository): ViewModel() {
-    private val _accounts = MutableLiveData<List<Account>>(ArrayList())
     private val _refreshing = MutableLiveData<Boolean>(false)
     private val _pagedAccounts = initializedPagedListBuilder(getConfig()).build()
-
-
-    val accounts : LiveData<List<Account>>
-        get() = _accounts
 
     val refreshing : LiveData<Boolean>
         get() = _refreshing
@@ -39,22 +29,6 @@ class FragmentAccountsVM internal constructor(private val repo: Repository): Vie
 
     fun setRefreshing(value: Boolean) {
         _refreshing.value = value
-    }
-
-    fun refresh() {
-        
-    }
-
-    fun getAccounts() {
-        viewModelScope.launch {
-            _refreshing.value = true
-            repo.getAccounts()?.let {
-                it.accounts?.let {accounts ->
-                    _accounts.value = accounts
-                }
-            }
-            _refreshing.value = false
-        }
     }
 
     private fun getConfig(): PagedList.Config = PagedList.Config.Builder()

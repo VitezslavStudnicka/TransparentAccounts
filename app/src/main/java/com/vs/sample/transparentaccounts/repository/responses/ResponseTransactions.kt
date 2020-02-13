@@ -1,6 +1,5 @@
 package com.vs.sample.transparentaccounts.repository.responses
 
-import com.vs.sample.transparentaccounts.models.Account
 import com.vs.sample.transparentaccounts.models.Transaction
 
 class ResponseTransactions {
