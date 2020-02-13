@@ -27,39 +27,75 @@
             tools:context=".fragments.FragmentAccountDetail">
 
             <TextView
-                android:id="@+id/tvCurrency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{transaction.amount.currency}"
-                tools:text="CZK" />
+                android:layout_marginTop="@dimen/card_vertical_margin"
+                app:dateToText="@{transaction.processingDate}"
+                tools:text="23:00" />
 
             <TextView
-                android:id="@+id/tvAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{transaction.amount.amount.toString()}"
-                tools:text="5825" />
-
-            <TextView
-                android:id="@+id/tvPrecision"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{String.valueOf(transaction.amount.precision)}"
-                tools:text="2" />
-
-            <TextView
-                android:id="@+id/tvDueDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:dateToText="@{transaction.dueDate}"
                 tools:text="23:00" />
 
             <TextView
-                android:id="@+id/tvTransactionTypeType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{transaction.type}"
-                tools:text="45000" />
+                android:layout_marginTop="@dimen/card_vertical_margin"
+                android:text="@{transaction.sender.name}"
+                tools:text="XXX" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{transaction.sender.accountNumber}"
+                tools:text="XXX" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/card_vertical_margin"
+                android:text="@{transaction.sender.description}"
+                tools:text="XXX" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/card_vertical_margin"
+                android:text="@{`CS: ` + transaction.sender.constantSymbol}"
+                tools:text="XXX" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`VS: ` + transaction.sender.variableSymbol}"
+                tools:text="XXX" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{transaction.amount.amount.toString()}"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    tools:text="58641" />
+
+                <TextView
+                    android:id="@+id/tvCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@{transaction.amount.currency}"
+                    android:textSize="20dp"
+                    tools:text="CZK" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

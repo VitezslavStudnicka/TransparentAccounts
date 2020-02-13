@@ -8,6 +8,7 @@ object Consts {
 
     const val FORMAT_DATE_TIME_REST = "yyyy-MM-dd'T'HH:mm:ss"
     const val FORMAT_DATE_TIME_USER = "HH:mm dd.MM.yyyy"
+    const val FORMAT_DATE_USER = "dd.MM.yyyy"
 
     const val ENDPOINT_ACCOUNTS = "."
     const val ENDPOINT_ACCOUNT_DETAIL = "{id}"

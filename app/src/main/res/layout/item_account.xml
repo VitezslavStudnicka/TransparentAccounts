@@ -29,6 +29,13 @@
             android:padding="@dimen/fragment_padding">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{account.name}"
+                tools:text="0000098461315/0800" />
+
+
+            <TextView
                 android:id="@+id/tvAccountNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,6 +49,18 @@
                 app:dateToText="@{account.transparencyFrom}"
                 tools:text="12:45 08.1.1999" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{account.description}"
+                tools:text="0000098461315/0800" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{account.note}"
+                tools:text="0000098461315/0800" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -51,6 +70,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{account.balance.toString()}"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     tools:text="58641" />
 
                 <TextView
@@ -59,6 +80,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="@{account.currency}"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     tools:text="CZK" />
 
             </LinearLayout>

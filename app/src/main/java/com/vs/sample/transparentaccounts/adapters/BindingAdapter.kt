@@ -8,5 +8,5 @@ import java.util.*
 
 @BindingAdapter("dateToText")
 fun bindDateText(view: TextView, date: Date?) {
-    view.text = date?.format(Consts.FORMAT_DATE_TIME_USER) ?: "-"
+    view.text = date?.format(Consts.FORMAT_DATE_USER) ?: "-"
 }

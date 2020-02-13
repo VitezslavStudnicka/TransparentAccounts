@@ -19,8 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/card_vertical_margin"
-        android:onClick="@{clickListener}"
-        >
+        android:onClick="@{clickListener}">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,17 +29,27 @@
             android:padding="@dimen/fragment_padding">
 
             <TextView
-                android:id="@+id/tvDueDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:dateToText="@{transaction.dueDate}"
+                app:dateToText="@{transaction.processingDate}"
                 tools:text="0000098461315/0800" />
 
             <TextView
-                android:id="@+id/tvTransactionType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{transaction.type}"
+                android:text="@{transaction.sender.name}"
+                tools:text="0000098461315/0800" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{transaction.sender.description}"
+                tools:text="0000098461315/0800" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{transaction.typeDescription}"
                 tools:text="0000098461315/0800" />
 
 
@@ -53,6 +62,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{transaction.amount.amount.toString()}"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     tools:text="58641" />
 
                 <TextView
@@ -61,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="@{transaction.amount.currency}"
+                    android:textSize="20dp"
                     tools:text="CZK" />
 
             </LinearLayout>

@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vs.sample.transparentaccounts.adapters.AdapterTransactions
 import com.vs.sample.transparentaccounts.adapters.AdapterTransactionsPaged
 import com.vs.sample.transparentaccounts.databinding.FragmentTransactionsBinding
 import com.vs.sample.transparentaccounts.utils.InjectorUtils
